@@ -101,7 +101,8 @@ bool PluginManager::init(IPlugin *plugin, QVariantMap parameters)
     if(plugin->property("initialized").toBool())
         return true;
 
-    QSetIterator<QString> dependencies(plugin->requires());
+    auto tmpDependencies = plugin->requires();
+    QSetIterator<QString> dependencies(tmpDependencies);
     while(dependencies.hasNext())
     {
        QString dep = dependencies.next();
